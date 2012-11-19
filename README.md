@@ -1,8 +1,10 @@
 # Scalax [![Build Status](https://secure.travis-ci.org/t3hnar/scalax.png)](http://travis-ci.org/t3hnar/scalax)
 
+Extension for default scala library
 
+## Examples
 
-## StringOption
+### StringOption
 
 ```scala
 import scalax._
@@ -12,7 +14,7 @@ StringOption("") // None
 StringOption("nonempty") // Some("nonempty")
 ```
 
-## TryOption
+### TryOption
 
 ```scala
 import scalax._
