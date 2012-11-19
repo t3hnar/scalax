@@ -7,6 +7,9 @@
 ```scala
 import scalax._
 
+StringOption(null) // None
+StringOption("") // None
+StringOption("nonempty") // Some("nonempty")
 ```
 
 ## TryOption
