@@ -1,6 +1,6 @@
 # ScalaX [![Build Status](https://secure.travis-ci.org/t3hnar/scalax.png)](http://travis-ci.org/t3hnar/scalax)
 
-Extension for default scala library
+Extension for [Scala](http://www.scala-lang.org) library
 
 ## Examples
 
@@ -39,7 +39,7 @@ TryOption("Not an error") // Some(Not an error)
 ```xml
     <dependency>
         <groupId>ua.t3hnar.scalax</groupId>
-        <artifactId>scalax</artifactId>
+        <artifactId>scalax_2.10.0-RC2</artifactId>
         <version>1.0-SNAPSHOT</version>
     </dependency>
 ```
