@@ -39,7 +39,7 @@ TryOption("Not an error") // Some(Not an error)
 ```xml
     <dependency>
         <groupId>ua.t3hnar.scalax</groupId>
-        <artifactId>scalax_2.10.0-RC2</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <artifactId>scalax_2.10</artifactId>
+        <version>1.0</version>
     </dependency>
 ```
