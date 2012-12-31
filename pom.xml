@@ -18,7 +18,8 @@
 
     <repositories>
         <repository>
-            <id>thenewmotion-nexus</id>
+            <id>thenewmotion</id>
+            <name>The New Motion Repository</name>
             <url>http://nexus.thenewmotion.com/content/groups/public/</url>
         </repository>
     </repositories>
