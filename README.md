@@ -26,6 +26,15 @@ TryOption(assert(false)) // AssertionError
 TryOption("Not an error") // Some(Not an error)
 ```
 
+### asInstanceOfOpt
+
+```scala
+import scalax._
+
+(null: Any).asInstanceOfOpt[String] // beNone
+("string": Any).asInstanceOfOpt[String] // beSome
+```
+
 ## Setup
 
 1. Add this repository to your pom.xml:
