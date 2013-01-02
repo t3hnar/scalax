@@ -31,8 +31,8 @@ TryOption("Not an error") // Some(Not an error)
 ```scala
 import scalax._
 
-(null: Any).asInstanceOfOpt[String] // beNone
-("string": Any).asInstanceOfOpt[String] // beSome
+(null: Any).asInstanceOfOpt[String] // None
+("string": Any).asInstanceOfOpt[String] // Some
 ```
 
 ## Setup
