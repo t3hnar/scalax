@@ -11,9 +11,11 @@ class AnyImplicitsSpec extends SpecificationWithJUnit {
       (null: Any).asInstanceOfOpt[String] must beNone
 
       ("string": Any).asInstanceOfOpt[String] must beSome
+      ("string": Any).asInstanceOfOpt[Any] must beSome
       ("string": Any).asInstanceOfOpt[Int] must beNone
 
       (new A {}: Any).asInstanceOfOpt[A] must beSome
+      (new A {}: Any).asInstanceOfOpt[Any] must beSome
       (new A {}: Any).asInstanceOfOpt[B] must beNone
 
       (new A with B {}: Any).asInstanceOfOpt[A] must beSome
