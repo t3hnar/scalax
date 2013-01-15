@@ -37,6 +37,7 @@ import scalax._
 
 ```scala
 import scalax.util.ExpiringCache
+
 val cache = new ExpiringCache[Int, Int](duration = 5,
                                         unit = TimeUnit.SECONDS,
                                         queryOverflow = 3)
@@ -44,11 +45,9 @@ cache.put(0,0)
 cache.get(0) // Some(0)
 
 // after 5 seconds
-cache.get(0) // None
+cache.get(0) // None, however it is not cleaned up yet, need one more query to go
 
-// however it is not cleaned yet, need one more query to go
-cache.get(0) // None
-// now it's cleaned as we reached `queryOverflow` limit
+cache.get(0) // None, now it's cleaned up as we reached `queryOverflow` limit
 ```
 
 ## Setup
