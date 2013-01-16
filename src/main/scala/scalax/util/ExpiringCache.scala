@@ -37,8 +37,9 @@ class ExpiringCache[K, V](val duration: Long,
     if (queryCount >= queryOverflow) cleanExpired()
   }
 
+  protected lazy val durationMillis = unit.toMillis(duration)
   protected def isExpired(timestamp: Long) =
-    (timestamp + unit.toMillis(duration)) <= currentMillis
+    (timestamp + durationMillis) <= currentMillis
 
   def cleanExpired() {
     val expired = map.toList.collect {
