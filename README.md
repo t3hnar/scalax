@@ -68,6 +68,6 @@ cache.get(0) // None, now it's cleaned up as we reached `queryOverflow` limit
     <dependency>
         <groupId>ua.t3hnar.scalax</groupId>
         <artifactId>scalax_2.9.2</artifactId>
-        <version>1.1-SNAPSHOT</version>
+        <version>1.1</version>
     </dependency>
 ```
