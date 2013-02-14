@@ -11,7 +11,9 @@ import scalax._
 
 StringOption(null) // None
 StringOption("") // None
+StringOption("\t\n\r ") // None
 StringOption("nonempty") // Some("nonempty")
+StringOption("\t\nnonempty\r ") // Some("nonempty")
 ```
 
 ### TryOption
