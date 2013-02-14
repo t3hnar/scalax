@@ -15,8 +15,16 @@ class StringOptionSpec extends SpecificationWithJUnit {
       StringOption("") must beNone
     }
 
+    "return None if string consists of whitespace chars" in {
+      StringOption("\t\n\r ") mustEqual None
+    }
+
     "return Some if nonempty string" in {
       StringOption("nonempty") mustEqual Some("nonempty")
+    }
+
+    "trim spaces if nonempty string" in {
+      StringOption("\t\nnonempty\r ") mustEqual Some("nonempty")
     }
   }
 }
