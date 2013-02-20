@@ -10,7 +10,7 @@
 
     <groupId>ua.t3hnar.scalax</groupId>
     <artifactId>scalax_2.9.2</artifactId>
-    <version>1.2</version>
+    <version>1.3-SNAPSHOT</version>
 
     <name>scalax</name>
     <url>http://github.com/t3hnar/scalax</url>
