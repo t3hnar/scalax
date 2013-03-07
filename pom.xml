@@ -4,13 +4,13 @@
 
     <parent>
         <groupId>ua.t3hnar</groupId>
-        <artifactId>scala-parent-pom_2.10</artifactId>
-        <version>2.0</version>
+        <artifactId>scala-parent-pom</artifactId>
+        <version>1.1</version>
     </parent>
 
     <groupId>ua.t3hnar.scalax</groupId>
-    <artifactId>scalax_2.10</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <artifactId>scalax_2.9.2</artifactId>
+    <version>1.3-SNAPSHOT</version>
 
     <name>scalax</name>
     <url>http://github.com/t3hnar/scalax</url>

@@ -26,6 +26,32 @@ TryOption(assert(false)) // AssertionError
 TryOption("Not an error") // Some(Not an error)
 ```
 
+### asInstanceOfOpt
+
+```scala
+import scalax._
+
+(null: Any).asInstanceOfOpt[String] // None
+("string": Any).asInstanceOfOpt[String] // Some
+```
+
+### ExpiringCache
+
+```scala
+import scalax.util.ExpiringCache
+
+val cache = new ExpiringCache[Int, Int](duration = 5,
+                                        unit = TimeUnit.SECONDS,
+                                        queryOverflow = 3)
+cache.put(0,0)
+cache.get(0) // Some(0)
+
+// after 5 seconds
+cache.get(0) // None, however it is not cleaned up yet, need one more query to go
+
+cache.get(0) // None, now it's cleaned up as we reached `queryOverflow` limit
+```
+
 ## Setup
 
 1. Add this repository to your pom.xml:
@@ -41,7 +67,7 @@ TryOption("Not an error") // Some(Not an error)
 ```xml
     <dependency>
         <groupId>ua.t3hnar.scalax</groupId>
-        <artifactId>scalax_2.10</artifactId>
-        <version>1.0</version>
+        <artifactId>scalax_2.9.2</artifactId>
+        <version>1.2</version>
     </dependency>
 ```
