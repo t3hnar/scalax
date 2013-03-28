@@ -11,3 +11,6 @@ target
 
 #JRebel
 rebel.xml
+
+# Mac
+.DS_Store
