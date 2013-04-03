@@ -16,16 +16,6 @@ StringOption("nonempty") // Some("nonempty")
 StringOption("\t\nnonempty\r ") // Some("nonempty")
 ```
 
-### TryOption
-
-```scala
-import scalax._
-
-TryOption(sys.error("Error")) // None
-TryOption(assert(false)) // AssertionError
-TryOption("Not an error") // Some(Not an error)
-```
-
 ### asInstanceOfOpt
 
 ```scala
@@ -67,7 +57,7 @@ cache.get(0) // None, now it's cleaned up as we reached `queryOverflow` limit
 ```xml
     <dependency>
         <groupId>ua.t3hnar.scalax</groupId>
-        <artifactId>scalax_2.9.2</artifactId>
+        <artifactId>scalax_2.10</artifactId>
         <version>1.2</version>
     </dependency>
 ```
