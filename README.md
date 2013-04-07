@@ -25,6 +25,21 @@ import scalax._
 ("string": Any).asInstanceOfOpt[String] // Some
 ```
 
+### RichEnum
+
+Adds `withNameOpt` method additionally to default `withName`
+
+```scala
+  object Color extends Enumeration {
+    val Green, Blue, Red = Value
+  }
+
+  import scalax._
+
+  Color.withNameOpt("Green") // Some(Green)
+  Color.withNameOpt("Black") // None
+```
+
 ### ExpiringCache
 
 ```scala
