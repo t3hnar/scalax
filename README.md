@@ -40,6 +40,22 @@ Adds `withNameOpt` method additionally to default `withName`
   Color.withNameOpt("Black") // None
 ```
 
+### RichSet
+
+Adds `collate` method to set. `collate` tries to compare sets of items in detail
+and returns which items were added, updated (key relative) and deleted in `s2` regarding `s1`
+
+```scala
+  import scalax.RichSet
+
+  case class Entity(id: Int, name: String)
+
+  val s1 = Set(Entity(1, "1"), Entity(2, "2"), Entity(3, "3"))
+  val s2 = Set(Entity(1, "1"), Entity(2, "u"), Entity(4, "4"))
+
+  s1.collate(s2)(_.id) // Some(Set(Entity(4, "4")), Set(Entity(2, "u")), Set(3))
+```
+
 ### ExpiringCache
 
 ```scala
