@@ -56,6 +56,20 @@ and returns items which were added, updated (key relative) and deleted in `s2` r
   s1.collate(s2)(_.id) // Some(Set(Entity(4, "4")), Set(Entity(2, "u")), Set(3))
 ```
 
+### RichDuration
+
+```scala
+  import scalax.RichDuration
+  import concurrent.duration._
+
+  60.seconds.toCoarsest // 1.minute
+  60.minutes.toCoarsest // 1.hour
+  180.minutes.toCoarsest // 3.hours
+  24.hours.toCoarsest // 1.day
+  Duration.Inf.toCoarsest // Duration.Inf
+  Duration.MinusInf.toCoarsest // Duration.MinusInf
+```
+
 ### ExpiringCache
 
 ```scala

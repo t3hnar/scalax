@@ -1,4 +1,6 @@
 import reflect.ClassTag
+import concurrent.duration.{FiniteDuration, Duration}
+import Duration.Infinite
 
 /**
  * @author Yaroslav Klymko
@@ -33,6 +35,13 @@ package object scalax {
         val removed = selfKeys diff other.map(key)
         (created, updated, removed)
       }
+    }
+  }
+
+  implicit class RichDuration[T <: Duration](val self: T) extends AnyVal {
+    def toCoarsest: T = self match {
+      case _: Infinite => self
+      case x: FiniteDuration => Duration.fromNanos(x.toNanos).asInstanceOf[T]
     }
   }
 }
