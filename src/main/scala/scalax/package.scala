@@ -40,8 +40,32 @@ package object scalax {
 
   implicit class RichDuration[T <: Duration](val self: T) extends AnyVal {
     def toCoarsest: T = self match {
+
+      case x: FiniteDuration =>
+        import scala.concurrent.duration._
+
+        def loop(length: Long, unit: TimeUnit): FiniteDuration = {
+          def coarserOrThis(coarser: TimeUnit, divider: Int) =
+            if (length % divider == 0) loop(length / divider, coarser)
+            else if (unit == x.unit) x
+            else FiniteDuration(length, unit)
+
+          unit match {
+            case DAYS => FiniteDuration(length, unit)
+            case HOURS => coarserOrThis(DAYS, 24)
+            case MINUTES => coarserOrThis(HOURS, 60)
+            case SECONDS => coarserOrThis(MINUTES, 60)
+            case MILLISECONDS => coarserOrThis(SECONDS, 1000)
+            case MICROSECONDS => coarserOrThis(MILLISECONDS, 1000)
+            case NANOSECONDS => coarserOrThis(MICROSECONDS, 1000)
+          }
+        }
+
+        if (x.unit == DAYS || x.length == 0) x.asInstanceOf[T]
+        else loop(x.length, x.unit).asInstanceOf[T]
       case _: Infinite => self
-      case x: FiniteDuration => Duration.fromNanos(x.toNanos).asInstanceOf[T]
+
     }
   }
+
 }

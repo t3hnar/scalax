@@ -14,17 +14,24 @@ class RichDurationSpec extends SpecificationWithJUnit with NoTimeConversions {
       Duration.Inf.toCoarsest mustEqual Duration.Inf
       Duration.MinusInf.toCoarsest mustEqual Duration.MinusInf
     }
-    "convert 60 seconds to 1 minute" in {
-      60.seconds.toCoarsest mustEqual 1.minute
-    }
-    "convert 60 minutes to 1 hour" in {
-      60.minutes.toCoarsest mustEqual 1.hour
-    }
-    "convert 180 minutes to 3 hours" in {
-      180.minutes.toCoarsest mustEqual 3.hours
-    }
-    "convert 24 hours to 1 day" in {
-      24.hours.toCoarsest mustEqual 1.day
+    "convert finite durations" in {
+      List(
+        (60 minutes, 1 hour),
+        (2000 millis, 2 seconds),
+        (2000 micros, 2 millis),
+        (2000 nanos, 2 micros),
+        (2000000 nanos, 2 millis),
+        (48 hours, 2 days),
+        (5 seconds, 5 seconds),
+        (0 seconds, 0 seconds),
+        (0 days, 0 days),
+        (1 days, 1 days)
+      ) foreach {
+        case (x, expected) =>
+          val actual = x.toCoarsest
+          assert(actual.unit == expected.unit)
+          assert(actual.length == expected.length)
+      }
     }
   }
 }
