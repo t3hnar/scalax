@@ -96,11 +96,8 @@ It means that method call has no performance drawback at runtime.
 ```
 import scalax.FieldsMap
 
-
 case class User(name: String, age: Int, address: Option[String]) extends FieldsMap
-
 val user = User("Chuck", 30, None)
-
 user.fieldsMap // Map("name" -> "Chuck", "age" -> 30, "address" -> None)
 ```
 
