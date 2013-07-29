@@ -15,6 +15,14 @@
     <url>http://github.com/t3hnar/scalax</url>
     <description>Extension for default scala library</description>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-reflect</artifactId>
+            <version>${scala.lang.version}</version>
+        </dependency>
+    </dependencies>
+
     <repositories>
         <repository>
             <id>thenewmotion</id>

@@ -87,6 +87,23 @@ cache.get(0) // None, however it is not cleaned up yet, need one more query to g
 cache.get(0) // None, now it's cleaned up as we reached `queryOverflow` limit
 ```
 
+
+### FieldsMap
+
+Method to get map of field name - value pairs, implemented with help of [Scala Macros](http://docs.scala-lang.org/overviews/macros/overview.html)
+It means that method call has no performance drawback at runtime.
+
+```
+import scalax.FieldsMap
+
+
+case class User(name: String, age: Int, address: Option[String]) extends FieldsMap
+
+val user = User("Chuck", 30, None)
+
+user.fieldsMap // Map("name" -> "Chuck", "age" -> 30, "address" -> None)
+```
+
 ## Setup
 
 1. Add this repository to your pom.xml:
