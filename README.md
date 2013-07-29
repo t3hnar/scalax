@@ -93,7 +93,7 @@ cache.get(0) // None, now it's cleaned up as we reached `queryOverflow` limit
 Method to get map of field name - value pairs, implemented with help of [Scala Macros](http://docs.scala-lang.org/overviews/macros/overview.html)
 It means that method call has no performance drawback at runtime.
 
-```
+```scala
 import scalax.FieldsMap
 
 case class User(name: String, age: Int, address: Option[String]) extends FieldsMap
