@@ -117,6 +117,6 @@ user.fieldsMap // Map("name" -> "Chuck", "age" -> 30, "address" -> None)
     <dependency>
         <groupId>ua.t3hnar.scalax</groupId>
         <artifactId>scalax_2.10</artifactId>
-        <version>1.4</version>
+        <version>1.6</version>
     </dependency>
 ```
