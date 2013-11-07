@@ -9,7 +9,7 @@
 
     <groupId>ua.t3hnar.scalax</groupId>
     <artifactId>scalax_2.10</artifactId>
-    <version>1.6</version>
+    <version>1.7-SNAPSHOT</version>
 
     <name>scalax</name>
     <url>http://github.com/t3hnar/scalax</url>
@@ -43,7 +43,7 @@
         <url>https://github.com/t3hnar/scalax</url>
         <connection>scm:git:ssh://git@github.com/t3hnar/scalax.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/t3hnar/scalax.git</developerConnection>
-      <tag>scalax_2.10-1.6</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <build>
