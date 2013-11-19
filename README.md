@@ -74,15 +74,12 @@ and returns items which were added, updated (key relative) and deleted in `s2` r
 ```scala
   import scalax.RichPartialFunction
 
-  val pf: PartialFunction[Int, String] = {
+  val pf1: PartialFunction[Int, String] = {
     case 0 => "0"
     case 1 => "1"
   }
 
-  pf.isDefinedAt(0) // true
-  pf.isDefinedAt(1) // true
-
-  val pf2 = pf.filter(_ == 0)
+  val pf2 = pf1.filter(_ == 0)
 
   pf2.isDefinedAt(0) // true
   pf2.isDefinedAt(1) // false
