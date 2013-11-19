@@ -70,23 +70,40 @@ and returns items which were added, updated (key relative) and deleted in `s2` r
   Duration.MinusInf.toCoarsest // Duration.MinusInf
 ```
 
+### RichPartialFunction
+```scala
+  import scalax.RichPartialFunction
+
+  val pf: PartialFunction[Int, String] = {
+    case 0 => "0"
+    case 1 => "1"
+  }
+
+  pf.isDefinedAt(0) // true
+  pf.isDefinedAt(1) // true
+
+  val pf2 = pf.filter(_ == 0)
+
+  pf2.isDefinedAt(0) // true
+  pf2.isDefinedAt(1) // false
+```
+
 ### ExpiringCache
 
 ```scala
-import scalax.util.ExpiringCache
+  import scalax.util.ExpiringCache
 
-val cache = new ExpiringCache[Int, Int](duration = 5,
+  val cache = new ExpiringCache[Int, Int](duration = 5,
                                         unit = TimeUnit.SECONDS,
                                         queryOverflow = 3)
-cache.put(0,0)
-cache.get(0) // Some(0)
+  cache.put(0,0)
+  cache.get(0) // Some(0)
 
-// after 5 seconds
-cache.get(0) // None, however it is not cleaned up yet, need one more query to go
+  // after 5 seconds
+  cache.get(0) // None, however it is not cleaned up yet, need one more query to go
 
-cache.get(0) // None, now it's cleaned up as we reached `queryOverflow` limit
+  cache.get(0) // None, now it's cleaned up as we reached `queryOverflow` limit
 ```
-
 
 ### FieldsMap
 

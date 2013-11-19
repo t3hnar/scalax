@@ -68,4 +68,16 @@ package object scalax {
     }
   }
 
+  implicit class RichPartialFunction[A, +B](val self: PartialFunction[A, B]) extends AnyVal {
+    def filter(f: A => Boolean): PartialFunction[A, B] = new PartialFunctionFilter[A, B](self, f)
+    def filterNot(f: A => Boolean): PartialFunction[A, B] = filter(x => !f(x))
+  }
+
+  /*
+  * Separate class because of: "implementation restriction: nested class is not allowed in value class"
+  */
+  private class PartialFunctionFilter[-A, +B](pf: PartialFunction[A, B], f: A => Boolean) extends PartialFunction[A, B] {
+    def apply(x: A) = pf.apply(x)
+    def isDefinedAt(x: A) = f(x) && pf.isDefinedAt(x)
+  }
 }
