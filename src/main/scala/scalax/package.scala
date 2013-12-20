@@ -80,4 +80,10 @@ package object scalax {
     def apply(x: A) = pf.apply(x)
     def isDefinedAt(x: A) = f(x) && pf.isDefinedAt(x)
   }
+
+  implicit class RichString(val self: String) extends AnyVal {
+    import scala.util.control.Exception._
+
+    def toIntOpt = catching(classOf[NumberFormatException]) opt self.toInt
+  }
 }
