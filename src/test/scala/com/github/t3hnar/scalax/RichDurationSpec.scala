@@ -1,14 +1,13 @@
-package scalax
+package com.github.t3hnar.scalax
 
-import org.specs2.mutable.SpecificationWithJUnit
+import org.specs2.mutable.Specification
 import org.specs2.time.NoTimeConversions
 import scala.concurrent.duration._
-
 
 /**
  * @author Yaroslav Klymko
  */
-class RichDurationSpec extends SpecificationWithJUnit with NoTimeConversions {
+class RichDurationSpec extends Specification with NoTimeConversions {
   "RichDuration.toCoarsest" should {
     "convert infinite to infinite" in {
       Duration.Inf.toCoarsest mustEqual Duration.Inf
@@ -25,8 +24,7 @@ class RichDurationSpec extends SpecificationWithJUnit with NoTimeConversions {
       (5 seconds, 5 seconds),
       (0 seconds, 0 seconds),
       (0 days, 0 days),
-      (1 days, 1 days)
-    )) {
+      (1 days, 1 days))) {
       case (x, expected) =>
         val actual = x.toCoarsest
         actual.unit mustEqual expected.unit

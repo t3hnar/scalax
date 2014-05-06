@@ -1,11 +1,11 @@
-package scalax.examples
+package com.github.t3hnar.scalax.examples
 
 /**
  * @author Yaroslav Klymko
  */
 object RichSetExample {
 
-  import scalax.RichSet
+  import com.github.t3hnar.scalax.RichSet
 
   case class Entity(id: Int, name: String)
 

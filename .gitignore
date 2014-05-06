@@ -1,16 +1,20 @@
 # Maven
 target
-
+ 
 # Idea
 .idea/
 *.iml
 *.ipr
-*.iws
-.buildpath
-*.ids
-
-#JRebel
-rebel.xml
-
+ 
 # Mac
 .DS_Store
+ 
+# SBT
+.cache
+.history
+.lib/
+dist/*
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/

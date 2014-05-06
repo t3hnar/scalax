@@ -1,4 +1,4 @@
-package scalax
+package com.github.t3hnar.scalax
 package examples
 
 /**
@@ -9,7 +9,7 @@ object RichEnumExample {
     val Green, Blue, Red = Value
   }
 
-  import scalax.RichEnum
+  import com.github.t3hnar.scalax.RichEnum
 
   Color.withNameOpt("Green") // Some(Green)
   Color.withNameOpt("Black") // None

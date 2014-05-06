@@ -1,13 +1,13 @@
-package scalax.util
+package com.github.t3hnar.scalax.util
 
-import org.specs2.mutable.SpecificationWithJUnit
+import org.specs2.mutable.Specification
 import java.util.concurrent.TimeUnit
 import org.specs2.specification.Scope
 
 /**
  * @author Yaroslav Klymko
  */
-class ExpiringCacheSpec extends SpecificationWithJUnit {
+class ExpiringCacheSpec extends Specification {
   "ExpiringCache" should {
     "clean expired values if get enough queries" in new ExpiringCacheScope {
       cache.map must haveSize(0)

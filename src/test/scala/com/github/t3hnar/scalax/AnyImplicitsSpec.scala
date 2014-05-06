@@ -1,11 +1,11 @@
-package scalax
+package com.github.t3hnar.scalax
 
-import org.specs2.mutable.SpecificationWithJUnit
+import org.specs2.mutable.Specification
 
 /**
  * @author Yaroslav Klymko
  */
-class AnyImplicitsSpec extends SpecificationWithJUnit {
+class AnyImplicitsSpec extends Specification {
   "AnyImplicitsSpec" should {
     "asInstanceOfOpt" in {
       (null: Any).asInstanceOfOpt[String] must beNone

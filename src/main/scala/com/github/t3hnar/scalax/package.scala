@@ -1,5 +1,7 @@
+package com.github.t3hnar
+
 import reflect.ClassTag
-import concurrent.duration.{FiniteDuration, Duration}
+import concurrent.duration.{ FiniteDuration, Duration }
 import Duration.Infinite
 
 /**

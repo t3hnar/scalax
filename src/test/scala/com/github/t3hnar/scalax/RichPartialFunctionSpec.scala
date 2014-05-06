@@ -1,11 +1,11 @@
-package scalax
+package com.github.t3hnar.scalax
 
-import org.specs2.mutable.SpecificationWithJUnit
+import org.specs2.mutable.Specification
 
 /**
  * @author Yaroslav Klymko
  */
-class RichPartialFunctionSpec extends SpecificationWithJUnit {
+class RichPartialFunctionSpec extends Specification {
   "PartialFunction.filter" should {
     "return new partial that will work for input that satisfy filter" in {
       val pf: PartialFunction[Int, String] = {

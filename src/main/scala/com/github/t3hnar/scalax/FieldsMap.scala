@@ -1,4 +1,4 @@
-package scalax
+package com.github.t3hnar.scalax
 
 import scala.language.experimental.macros
 

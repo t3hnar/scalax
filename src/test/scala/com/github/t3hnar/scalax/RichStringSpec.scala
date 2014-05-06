@@ -1,8 +1,8 @@
-package scalax
+package com.github.t3hnar.scalax
 
-import org.specs2.mutable.SpecificationWithJUnit
+import org.specs2.mutable.Specification
 
-class RichStringSpec extends SpecificationWithJUnit {
+class RichStringSpec extends Specification {
 
   "RichString.toIntOpt" should {
 

@@ -1,4 +1,4 @@
-package scalax.util
+package com.github.t3hnar.scalax.util
 
 import java.util.concurrent.TimeUnit
 import collection.mutable
@@ -6,9 +6,10 @@ import collection.mutable
 /**
  * @author Yaroslav Klymko
  */
-class ExpiringCache[K, V](val duration: Long,
-                          val unit: TimeUnit,
-                          val queryOverflow: Int = 1000) {
+class ExpiringCache[K, V](
+    val duration: Long,
+    val unit: TimeUnit,
+    val queryOverflow: Int = 1000) {
 
   case class ExpiringValue(value: V, timestamp: Long)
 
@@ -50,9 +51,9 @@ class ExpiringCache[K, V](val duration: Long,
 }
 
 class SynchronizedExpiringCache[K, V](duration: Long,
-                                      unit: TimeUnit,
-                                      queryOverflow: Int = 1000)
-  extends ExpiringCache[K, V](duration, unit, queryOverflow) {
+  unit: TimeUnit,
+  queryOverflow: Int = 1000)
+    extends ExpiringCache[K, V](duration, unit, queryOverflow) {
 
   override def get(key: K): Option[V] = synchronized {
     super.get(key)

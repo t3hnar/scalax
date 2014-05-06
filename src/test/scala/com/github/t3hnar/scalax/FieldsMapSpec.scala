@@ -1,11 +1,11 @@
-package scalax
+package com.github.t3hnar.scalax
 
-import org.specs2.mutable.SpecificationWithJUnit
+import org.specs2.mutable.Specification
 
 /**
  * @author Yaroslav Klymko
  */
-class FieldsMapSpec extends SpecificationWithJUnit {
+class FieldsMapSpec extends Specification {
   "FieldsMap" should {
     "return map of fields" in {
 

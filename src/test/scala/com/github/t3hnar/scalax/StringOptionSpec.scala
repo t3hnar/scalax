@@ -1,11 +1,11 @@
-package scalax
+package com.github.t3hnar.scalax
 
-import org.specs2.mutable.SpecificationWithJUnit
+import org.specs2.mutable.Specification
 
 /**
  * @author Yaroslav Klymko
  */
-class StringOptionSpec extends SpecificationWithJUnit {
+class StringOptionSpec extends Specification {
   "StringOption" should {
     "return None if null" in {
       StringOption(null) must beNone

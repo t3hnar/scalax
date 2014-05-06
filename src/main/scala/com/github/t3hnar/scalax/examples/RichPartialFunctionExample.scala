@@ -1,10 +1,10 @@
-package scalax.examples
+package com.github.t3hnar.scalax.examples
 
 /**
  * @author Yaroslav Klymko
  */
 object RichPartialFunctionExample {
-  import scalax.RichPartialFunction
+  import com.github.t3hnar.scalax.RichPartialFunction
 
   val pf1: PartialFunction[Int, String] = {
     case 0 => "0"

@@ -7,7 +7,7 @@ Extension for [Scala](http://www.scala-lang.org) library
 ### StringOption
 
 ```scala
-import scalax._
+import com.github.t3hnar.scalax._
 
 StringOption(null) // None
 StringOption("") // None
@@ -19,7 +19,7 @@ StringOption("\t\nnonempty\r ") // Some("nonempty")
 ### asInstanceOfOpt
 
 ```scala
-import scalax._
+import com.github.t3hnar.scalax._
 
 (null: Any).asInstanceOfOpt[String] // None
 ("string": Any).asInstanceOfOpt[String] // Some
@@ -34,7 +34,7 @@ Adds `withNameOpt` method additionally to default `withName`
     val Green, Blue, Red = Value
   }
 
-  import scalax._
+  import com.github.t3hnar.scalax._
 
   Color.withNameOpt("Green") // Some(Green)
   Color.withNameOpt("Black") // None
@@ -46,7 +46,7 @@ Adds `collate` method to set. `collate` tries to compare sets of items in detail
 and returns items which were added, updated (key relative) and deleted in `s2` regarding `s1`
 
 ```scala
-  import scalax.RichSet
+  import com.github.t3hnar.scalax.RichSet
 
   case class Entity(id: Int, name: String)
 
@@ -59,7 +59,7 @@ and returns items which were added, updated (key relative) and deleted in `s2` r
 ### RichDuration
 
 ```scala
-  import scalax.RichDuration
+  import com.github.t3hnar.scalax.RichDuration
   import concurrent.duration._
 
   60.seconds.toCoarsest // 1.minute
@@ -72,7 +72,7 @@ and returns items which were added, updated (key relative) and deleted in `s2` r
 
 ### RichPartialFunction
 ```scala
-  import scalax.RichPartialFunction
+  import com.github.t3hnar.scalax.RichPartialFunction
 
   val pf1: PartialFunction[Int, String] = {
     case 0 => "0"
@@ -88,7 +88,7 @@ and returns items which were added, updated (key relative) and deleted in `s2` r
 ### ExpiringCache
 
 ```scala
-  import scalax.util.ExpiringCache
+  import com.github.t3hnar.scalax.util.ExpiringCache
 
   val cache = new ExpiringCache[Int, Int](duration = 5,
                                         unit = TimeUnit.SECONDS,
@@ -108,7 +108,7 @@ Method to get map of field name - value pairs, implemented with help of [Scala M
 It means that method call has no performance drawback at runtime.
 
 ```scala
-import scalax.FieldsMap
+import com.github.t3hnar.scalax.FieldsMap
 
 case class User(name: String, age: Int, address: Option[String]) extends FieldsMap
 val user = User("Chuck", 30, None)
@@ -117,20 +117,6 @@ user.fieldsMap // Map("name" -> "Chuck", "age" -> 30, "address" -> None)
 
 ## Setup
 
-1. Add this repository to your pom.xml:
-```xml
-    <repository>
-        <id>thenewmotion</id>
-        <name>The New Motion Repository</name>
-        <url>http://nexus.thenewmotion.com/content/repositories/releases-public</url>
-    </repository>
-```
-
-2. Add dependency to your pom.xml:
-```xml
-    <dependency>
-        <groupId>ua.t3hnar.scalax</groupId>
-        <artifactId>scalax_2.10</artifactId>
-        <version>1.6</version>
-    </dependency>
+```scala
+libraryDependencies += "com.github.t3hnar" %% "scalax" % 2.0
 ```
