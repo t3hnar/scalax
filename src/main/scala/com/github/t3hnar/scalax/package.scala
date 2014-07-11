@@ -3,6 +3,7 @@ package com.github.t3hnar
 import reflect.ClassTag
 import concurrent.duration.{ FiniteDuration, Duration }
 import Duration.Infinite
+import scala.util.{ Failure, Success, Try }
 
 /**
  * @author Yaroslav Klymko
@@ -87,5 +88,12 @@ package object scalax {
     import scala.util.control.Exception._
 
     def toIntOpt = catching(classOf[NumberFormatException]) opt self.toInt
+  }
+
+  implicit class RichTry[T](val self: Try[T]) extends AnyVal {
+    def fold[B](onFailure: Throwable => B)(f: T => B): B = self match {
+      case Success(x) => f(x)
+      case Failure(x) => onFailure(x)
+    }
   }
 }

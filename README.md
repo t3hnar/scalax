@@ -85,6 +85,14 @@ and returns items which were added, updated (key relative) and deleted in `s2` r
   pf2.isDefinedAt(1) // false
 ```
 
+### RichTry
+
+```scala
+  import com.github.t3hnar.scalax.RichTry
+  
+  Try("10".toInt).fold("NumberFormatException for " + _)("Valid int: " + _)
+```
+
 ### ExpiringCache
 
 ```scala
@@ -118,5 +126,5 @@ user.fieldsMap // Map("name" -> "Chuck", "age" -> 30, "address" -> None)
 ## Setup
 
 ```scala
-libraryDependencies += "com.github.t3hnar" %% "scalax" % 2.0
+libraryDependencies += "com.github.t3hnar" %% "scalax" % "2.0"
 ```
