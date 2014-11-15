@@ -126,5 +126,5 @@ user.fieldsMap // Map("name" -> "Chuck", "age" -> 30, "address" -> None)
 ## Setup
 
 ```scala
-libraryDependencies += "com.github.t3hnar" %% "scalax" % "2.0"
+libraryDependencies += "com.github.t3hnar" %% "scalax" % "2.1"
 ```
