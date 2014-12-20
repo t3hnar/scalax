@@ -1,8 +1,8 @@
 package com.github.t3hnar
 
-import reflect.ClassTag
-import concurrent.duration.{ FiniteDuration, Duration }
-import Duration.Infinite
+import scala.reflect.ClassTag
+import scala.concurrent.duration.{ FiniteDuration, Duration }
+import scala.concurrent.duration.Duration.Infinite
 import scala.util.{ Failure, Success, Try }
 
 /**
@@ -43,7 +43,7 @@ package object scalax {
 
   implicit class RichDuration[T <: Duration](val self: T) extends AnyVal {
     def toCoarsest: T = self match {
-
+      case _: Infinite => self
       case x: FiniteDuration =>
         import scala.concurrent.duration._
 
@@ -66,22 +66,12 @@ package object scalax {
 
         if (x.unit == DAYS || x.length == 0) x.asInstanceOf[T]
         else loop(x.length, x.unit).asInstanceOf[T]
-      case _: Infinite => self
-
     }
   }
 
   implicit class RichPartialFunction[A, +B](val self: PartialFunction[A, B]) extends AnyVal {
     def filter(f: A => Boolean): PartialFunction[A, B] = new PartialFunctionFilter[A, B](self, f)
     def filterNot(f: A => Boolean): PartialFunction[A, B] = filter(x => !f(x))
-  }
-
-  /*
-  * Separate class because of: "implementation restriction: nested class is not allowed in value class"
-  */
-  private class PartialFunctionFilter[-A, +B](pf: PartialFunction[A, B], f: A => Boolean) extends PartialFunction[A, B] {
-    def apply(x: A) = pf.apply(x)
-    def isDefinedAt(x: A) = f(x) && pf.isDefinedAt(x)
   }
 
   implicit class RichString(val self: String) extends AnyVal {
