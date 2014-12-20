@@ -75,9 +75,22 @@ package object scalax {
   }
 
   implicit class RichString(val self: String) extends AnyVal {
-    import scala.util.control.Exception._
 
-    def toIntOpt = catching(classOf[NumberFormatException]) opt self.toInt
+    def toByteOpt: Option[Byte] = numeric(_.toByte)
+
+    def toIntOpt: Option[Int] = numeric(_.toInt)
+
+    def toLongOpt: Option[Long] = numeric(_.toLong)
+
+    def toFloatOpt: Option[Float] = numeric(_.toFloat)
+
+    def toDoubleOpt: Option[Double] = numeric(_.toDouble)
+
+    def toBooleanOpt: Option[Boolean] = StringOption(self).flatMap(ToBooleanOpt(_))
+
+    private def numeric[T](f: String => T): Option[T] = try StringOption(self).map(f) catch {
+      case _: NumberFormatException => None
+    }
   }
 
   implicit class RichTry[T](val self: Try[T]) extends AnyVal {
