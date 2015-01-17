@@ -126,6 +126,19 @@ and returns items which were added, updated (key relative) and deleted in `s2` r
   Try("10".toInt).fold("NumberFormatException for " + _)("Valid int: " + _)
 ```
 
+### RichSetMap
+
+```scala
+  import com.github.t3hnar.scalax.RichSetMap
+
+  val map = Map(1 -> Set(1))
+  map.getOrEmpty(1) // Set()
+  map.updatedSet(1, _ - 1) // Map()
+  map.updatedSet(1, _ + 2) // Map(1 -> Set(1, 2))
+  map.updatedSet(2, _ + 2) // Map(1 -> Set(1), 2 -> Set(2))
+  map.updatedSet(1, _ => Set(1, 2, 3)) // Map(1 -> Set(1, 2, 3))
+```
+
 ### ExpiringCache
 
 ```scala
@@ -141,19 +154,6 @@ and returns items which were added, updated (key relative) and deleted in `s2` r
   cache.get(0) // None, however it is not cleaned up yet, need one more query to go
 
   cache.get(0) // None, now it's cleaned up as we reached `queryOverflow` limit
-```
-
-### FieldsMap
-
-Method to get map of field name - value pairs, implemented with help of [Scala Macros](http://docs.scala-lang.org/overviews/macros/overview.html)
-It means that method call has no performance drawback at runtime.
-
-```scala
-import com.github.t3hnar.scalax.FieldsMap
-
-case class User(name: String, age: Int, address: Option[String]) extends FieldsMap
-val user = User("Chuck", 30, None)
-user.fieldsMap // Map("name" -> "Chuck", "age" -> 30, "address" -> None)
 ```
 
 ## Setup

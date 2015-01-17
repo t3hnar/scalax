@@ -99,4 +99,14 @@ package object scalax {
       case Failure(x) => onFailure(x)
     }
   }
+
+  implicit class RichSetMap[M, S](val self: Map[M, Set[S]]) extends AnyVal {
+    def getOrEmpty(m: M): Set[S] = self.getOrElse(m, Set.empty)
+
+    def updatedSet(m: M, f: Set[S] => Set[S]): Map[M, Set[S]] = {
+      val set = f(self getOrEmpty m)
+      if (set.isEmpty) self - m
+      else self + (m -> set)
+    }
+  }
 }
