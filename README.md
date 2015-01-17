@@ -159,5 +159,5 @@ and returns items which were added, updated (key relative) and deleted in `s2` r
 ## Setup
 
 ```scala
-libraryDependencies += "com.github.t3hnar" %% "scalax" % "2.2"
+libraryDependencies += "com.github.t3hnar" %% "scalax" % "2.3"
 ```
