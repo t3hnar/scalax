@@ -48,3 +48,5 @@ scalariformSettings
 sonatypeSettings
 
 releaseSettings
+
+ScoverageSbtPlugin.ScoverageKeys.coverageExcludedPackages := "com.github.t3hnar.scalax.examples.*"

@@ -1,4 +1,4 @@
-# ScalaX [![Build Status](https://secure.travis-ci.org/t3hnar/scalax.png)](http://travis-ci.org/t3hnar/scalax)
+# ScalaX [![Build Status](https://travis-ci.org/t3hnar/scalax.svg)](https://travis-ci.org/t3hnar/scalax) [![Coverage Status](https://coveralls.io/repos/t3hnar/scalax/badge.svg)](https://coveralls.io/r/t3hnar/scalax)
 
 Extension for [Scala](http://www.scala-lang.org) library
 
