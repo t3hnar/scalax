@@ -5,10 +5,10 @@ import scala.language.experimental.macros
 /**
  * @author Yaroslav Klymko
  */
-@deprecated("Getting read of scala-reflect dependency", "v2.3, 2015-01-17")
+@deprecated("Getting rid of scala-reflect dependency", "v2.3, 2015-01-17")
 trait FieldsMap
 
-@deprecated("Getting read of scala-reflect dependency", "v2.3, 2015-01-17")
+@deprecated("Getting rid of scala-reflect dependency", "v2.3, 2015-01-17")
 object FieldsMap {
   implicit class Mappable[M <: FieldsMap](val model: M) extends AnyVal {
     def fieldsMap: Map[String, Any] = macro Macros.fieldsMap_impl[M]
