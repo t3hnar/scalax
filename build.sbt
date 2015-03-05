@@ -15,8 +15,6 @@ homepage := Some(new URL("https://github.com/t3hnar/scalax"))
 
 scalacOptions := Seq("-encoding", "UTF-8", "-unchecked", "-deprecation", "-feature", "-Xlint")
 
-libraryDependencies += "org.scala-lang" % "scala-reflect" % scalaVersion.value
-
 libraryDependencies += "org.specs2" %% "specs2-core" % "2.4.15" % "test"
 
 organization := "com.github.t3hnar"
