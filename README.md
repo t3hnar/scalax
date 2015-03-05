@@ -139,6 +139,31 @@ and returns items which were added, updated (key relative) and deleted in `s2` r
   map.updatedSet(1, _ => Set(1, 2, 3)) // Map(1 -> Set(1, 2, 3))
 ```
 
+### Primitive
+
+```scala
+  import com.github.t3hnar.scalax.Primitive
+
+  Primitive.unapply(()) // None
+  Primitive.unapply(true) // Some(true)
+  Primitive.unapply(' ') // Some( )
+  Primitive.unapply(1) // Some(1)
+  Primitive.unapply("") // None
+```
+
+### StandardAnyVal
+
+```scala
+  import com.github.t3hnar.scalax.StandardAnyVal
+
+  StandardAnyVal.unapply(()) // Some(())
+  StandardAnyVal.unapply(true) // Some(true)
+  StandardAnyVal.unapply(' ') // Some( )
+  StandardAnyVal.unapply(1) // Some(1)
+  StandardAnyVal.unapply("") // None
+```
+
+
 ### ExpiringCache
 
 ```scala
