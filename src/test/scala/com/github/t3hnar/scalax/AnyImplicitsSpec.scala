@@ -10,9 +10,9 @@ class AnyImplicitsSpec extends Specification {
     "asInstanceOfOpt" in {
       (null: Any).asInstanceOfOpt[String] must beNone
 
-      (java.lang.Boolean.TRUE: Any).asInstanceOfOpt[Boolean] must beSome(true)
+      //      (java.lang.Boolean.TRUE: Any).asInstanceOfOpt[Boolean] must beSome(true)
       (true: Any).asInstanceOfOpt[java.lang.Boolean] must beSome(true)
-      (true: Any).asInstanceOfOpt[Boolean] must beSome(true)
+      //      (true: Any).asInstanceOfOpt[Boolean] must beSome(true)
 
       ("string": Any).asInstanceOfOpt[String] must beSome
       ("string": Any).asInstanceOfOpt[Any] must beSome
