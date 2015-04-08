@@ -114,4 +114,11 @@ package object scalax {
       else self + (m -> set)
     }
   }
+
+  implicit class RichEither[A, B](val self: Either[A, B]) extends AnyVal {
+    def toTry(implicit ev: A <:< Throwable): Try[B] = self match {
+      case Right(x) => Success(x)
+      case Left(x) => Failure(ev(x))
+    }
+  }
 }

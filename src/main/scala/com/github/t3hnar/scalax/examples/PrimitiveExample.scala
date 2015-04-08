@@ -1,6 +1,6 @@
 package com.github.t3hnar.scalax.examples
 
-class PrimitiveExample {
+object PrimitiveExample {
 
   import com.github.t3hnar.scalax.Primitive
 
