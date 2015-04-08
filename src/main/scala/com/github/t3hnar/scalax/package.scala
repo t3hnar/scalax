@@ -1,8 +1,8 @@
 package com.github.t3hnar
 
-import scala.reflect.ClassTag
-import scala.concurrent.duration.{ FiniteDuration, Duration }
 import scala.concurrent.duration.Duration.Infinite
+import scala.concurrent.duration.{ Duration, FiniteDuration }
+import scala.reflect.ClassTag
 import scala.util.{ Failure, Success, Try }
 
 /**
@@ -97,6 +97,11 @@ package object scalax {
     def fold[B](onFailure: Throwable => B)(f: T => B): B = self match {
       case Success(x) => f(x)
       case Failure(x) => onFailure(x)
+    }
+
+    def toEither: Either[Throwable, T] = self match {
+      case Success(x) => Right(x)
+      case Failure(x) => Left(x)
     }
   }
 

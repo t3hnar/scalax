@@ -124,6 +124,9 @@ and returns items which were added, updated (key relative) and deleted in `s2` r
   import com.github.t3hnar.scalax.RichTry
   
   Try("10".toInt).fold("NumberFormatException for " + _)("Valid int: " + _)
+  
+  Try("10".toInt).toEither // Right(10)
+  Try("abc".toInt).toEither // Left(java.lang.NumberFormatException: For input string: "abc") 
 ```
 
 ### RichSetMap
