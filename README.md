@@ -178,6 +178,24 @@ and returns items which were added, updated (key relative) and deleted in `s2` r
   StandardAnyVal.unapply("") // None
 ```
 
+### RichClass
+
+```scala
+  import com.github.t3hnar.scalax.RichClass
+  
+  classOf[Class1].simpleName // Class1 
+  classOf[Class1.Class2].simpleName // Class2
+  classOf[Class1.Class2.Class3].simpleName // Class3
+
+  class Class1
+  object Class1 {
+    class Class2
+    object Class2 {
+      class Class3
+    }
+  }
+```
+
 
 ### ExpiringCache
 

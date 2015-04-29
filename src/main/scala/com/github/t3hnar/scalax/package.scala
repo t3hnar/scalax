@@ -1,9 +1,9 @@
 package com.github.t3hnar
 
 import scala.concurrent.duration.Duration.Infinite
-import scala.concurrent.duration.{ Duration, FiniteDuration }
+import scala.concurrent.duration.{Duration, FiniteDuration}
 import scala.reflect.ClassTag
-import scala.util.{ Failure, Success, Try }
+import scala.util.{Failure, Success, Try}
 
 /**
  * @author Yaroslav Klymko
@@ -119,6 +119,13 @@ package object scalax {
     def toTry(implicit ev: A <:< Throwable): Try[B] = self match {
       case Right(x) => Success(x)
       case Left(x) => Failure(ev(x))
+    }
+  }
+
+  implicit class RichClass(val self: Class[_]) extends AnyVal {
+    def simpleName: String = {
+      val xs = self.getName.split("\\$")
+      if (xs.size > 1) xs.last else self.getSimpleName
     }
   }
 }

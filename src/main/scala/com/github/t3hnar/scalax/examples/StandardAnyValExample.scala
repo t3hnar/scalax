@@ -1,6 +1,6 @@
 package com.github.t3hnar.scalax.examples
 
-class StandardAnyValExample {
+object StandardAnyValExample {
 
   import com.github.t3hnar.scalax.StandardAnyVal
 
