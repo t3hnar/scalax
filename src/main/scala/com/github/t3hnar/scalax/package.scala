@@ -86,6 +86,14 @@ package object scalax {
 
     def toDoubleOpt: Option[Double] = numeric(_.toDouble)
 
+    def toBigInt: BigInt = BigInt(self)
+
+    def toBigIntOpt: Option[BigInt] = numeric(_.toBigInt)
+
+    def toBigDecimal: BigDecimal = BigDecimal(self)
+
+    def toBigDecimalOpt: Option[BigDecimal] = numeric(_.toBigDecimal)
+
     def toBooleanOpt: Option[Boolean] = StringOption(self).flatMap(ToBooleanOpt(_))
 
     private def numeric[T](f: String => T): Option[T] = try StringOption(self).map(f) catch {

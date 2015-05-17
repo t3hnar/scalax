@@ -54,6 +54,46 @@ class RichStringSpec extends Specification {
     }
   }
 
+  "RichString.toBigInt" should {
+    "return BigInt for valid strings" in {
+      "42".toBigInt mustEqual BigInt(42)
+    }
+
+    "return throw exception invalid BigInt strings" in {
+      "test".toBigInt must throwA[NumberFormatException]
+    }
+  }
+
+  "RichString.BigDecimal" should {
+    "return BigDecimal for valid strings" in {
+      "42.31".toBigDecimal mustEqual BigDecimal(42.31)
+    }
+
+    "return throw exception invalid BigDecimal strings" in {
+      "test".toBigDecimal must throwA[NumberFormatException]
+    }
+  }
+
+  "RichString.toBigIntOpt" should {
+    "return Some for valid BigInt strings" in {
+      "42".toBigIntOpt must beSome(BigInt(42))
+    }
+
+    "return None for invalid BigInt strings" in {
+      "test".toBigIntOpt must beNone
+    }
+  }
+
+  "RichString.toBigDecimalOpt" should {
+    "return Some for valid BigDecimal strings" in {
+      "42.31".toBigDecimalOpt must beSome(BigDecimal(42.31))
+    }
+
+    "return None for invalid BigDecimal strings" in {
+      "test".toBigDecimalOpt must beNone
+    }
+  }
+
   "RichString.toBooleanOpt" should {
     "return Some for valid boolean strings" in {
       "\ntrue".toBooleanOpt must beSome(true)
