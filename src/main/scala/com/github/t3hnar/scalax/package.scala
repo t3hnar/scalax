@@ -136,4 +136,8 @@ package object scalax {
       if (xs.size > 1) xs.last else self.getSimpleName
     }
   }
+
+  implicit class RichOption[T](val self: Option[T]) extends AnyVal {
+    def orError(msg: String): T = self getOrElse sys.error(msg)
+  }
 }

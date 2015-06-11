@@ -196,6 +196,16 @@ and returns items which were added, updated (key relative) and deleted in `s2` r
   }
 ```
 
+### RichOption
+
+```scala
+  import com.github.t3hnar.scalax.RichOption
+
+  Option(1) orError "option is empty" // 1
+  Option.empty[Int] orError "option is empty" // java.lang.RuntimeException
+
+```
+
 
 ### ExpiringCache
 
