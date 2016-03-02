@@ -18,8 +18,8 @@ class ExpiringCache[K, V](
 
   implicit val ec = executionContext
 
-  def this(duration: FiniteDuration, queryOverflow: Int, executionContext: ExecutionContext) =
-    this(duration.length, duration.unit, queryOverflow, executionContext)
+  def this(duration: FiniteDuration, queryOverflow: Int)(implicit ec: ExecutionContext) =
+    this(duration.length, duration.unit, queryOverflow, ec)
 
   case class ExpiringValue(value: V, timestamp: Long)
 
