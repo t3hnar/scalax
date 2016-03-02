@@ -36,7 +36,9 @@ class ExpiringCache[K, V](
   }
 
   def put(entry: K, value: V): Option[V] =
-    map.put(entry, ExpiringValue(value, currentMillis)).map(_.value)
+    map.put(entry, ExpiringValue(value, currentMillis)) map (_.value)
+
+  def remove(entry: K): Option[V] = map.remove(entry) map (_.value)
 
   protected def currentMillis = System.currentTimeMillis()
 
