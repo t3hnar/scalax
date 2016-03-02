@@ -77,6 +77,7 @@ class ExpiringCache[K, V](
   }
 }
 
+@deprecated("Use ExpiringCache - it is thread safe now", "2.9")
 class SynchronizedExpiringCache[K, V](duration: Long,
   unit: TimeUnit,
   queryOverflow: Int = 1000)
@@ -92,5 +93,9 @@ class SynchronizedExpiringCache[K, V](duration: Long,
 
   override def cleanExpired(): Unit = synchronized {
     super.cleanExpired()
+  }
+
+  override def remove(entry: K): Option[V] = synchronized {
+    super.remove(entry)
   }
 }
