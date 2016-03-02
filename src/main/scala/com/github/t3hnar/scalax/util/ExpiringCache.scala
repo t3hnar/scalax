@@ -1,19 +1,31 @@
 package com.github.t3hnar.scalax.util
 
 import java.util.concurrent.TimeUnit
-import collection.mutable
+import java.util.concurrent.locks.ReentrantLock
+import scala.collection.concurrent.TrieMap
+
+import scala.concurrent.{ExecutionContext, Future}
+import scala.concurrent.duration._
 
 /**
- * @author Yaroslav Klymko
+ * @author Yaroslav Klymko, Sergiy Prydatchenko
  */
 class ExpiringCache[K, V](
     val duration: Long,
     val unit: TimeUnit,
-    val queryOverflow: Int = 1000) {
+    val queryOverflow: Int = 1000,
+    executionContext: ExecutionContext = scala.concurrent.ExecutionContext.Implicits.global) {
+
+  implicit val ec = executionContext
+
+  def this(duration: FiniteDuration, queryOverflow: Int)(implicit ec: ExecutionContext) =
+    this(duration.length, duration.unit, queryOverflow, ec)
 
   case class ExpiringValue(value: V, timestamp: Long)
 
-  val map = new mutable.HashMap[K, ExpiringValue]
+  private[util] val map: TrieMap[K, ExpiringValue] = TrieMap.empty
+
+  private val lock = new ReentrantLock()
 
   def get(key: K): Option[V] = {
     increaseQueryCount()
@@ -24,18 +36,31 @@ class ExpiringCache[K, V](
   }
 
   def put(entry: K, value: V): Option[V] =
-    map.put(entry, ExpiringValue(value, currentMillis)).map(_.value)
+    map.put(entry, ExpiringValue(value, currentMillis)) map (_.value)
+
+  def remove(entry: K): Option[V] = map.remove(entry) map (_.value)
 
   protected def currentMillis = System.currentTimeMillis()
 
-  private[util] var queryCount = 0
+  @volatile private[util] var queryCount = 0
 
   protected def increaseQueryCount() {
     queryCount = queryCount + 1
   }
 
   protected def maybeCleanExpired() {
-    if (queryCount >= queryOverflow) cleanExpired()
+    if (queryCount >= queryOverflow) {
+      try {
+        lock.lock()
+        if (queryCount >= queryOverflow) {
+          queryCount = 0
+          lock.unlock()
+          cleanExpired()
+        }
+      } finally {
+        if (lock.isHeldByCurrentThread) lock.unlock()
+      }
+    }
   }
 
   protected lazy val durationMillis = unit.toMillis(duration)
@@ -43,13 +68,16 @@ class ExpiringCache[K, V](
     (timestamp + durationMillis) <= currentMillis
 
   def cleanExpired() {
-    val expired = map.toList.collect {
-      case (key, ExpiringValue(_, timestamp)) if isExpired(timestamp) => key
+    Future {
+      val expired = map.toList.collect {
+        case (key, ExpiringValue(_, timestamp)) if isExpired(timestamp) => key
+      }
+      expired.foreach(map.remove)
     }
-    expired.foreach(map.remove)
   }
 }
 
+@deprecated("Use ExpiringCache - it is thread safe now", "2.9")
 class SynchronizedExpiringCache[K, V](duration: Long,
   unit: TimeUnit,
   queryOverflow: Int = 1000)
@@ -65,5 +93,9 @@ class SynchronizedExpiringCache[K, V](duration: Long,
 
   override def cleanExpired(): Unit = synchronized {
     super.cleanExpired()
+  }
+
+  override def remove(entry: K): Option[V] = synchronized {
+    super.remove(entry)
   }
 }

@@ -5,9 +5,9 @@ name := "scalax"
 
 organization := "com.github.t3hnar"
 
-scalaVersion := "2.11.6"
+scalaVersion := "2.11.7"
 
-crossScalaVersions := Seq("2.10.5", "2.11.6")
+crossScalaVersions := Seq("2.10.5", "2.11.7")
 
 licenses := Seq(("Apache License, Version 2.0", url("http://www.apache.org/licenses/LICENSE-2.0")))
 
@@ -15,7 +15,7 @@ homepage := Some(new URL("https://github.com/t3hnar/scalax"))
 
 scalacOptions := Seq("-encoding", "UTF-8", "-unchecked", "-deprecation", "-feature", "-Xlint")
 
-libraryDependencies += "org.specs2" %% "specs2-core" % "2.4.15" % "test"
+libraryDependencies += "org.specs2" %% "specs2-core" % "3.7" % "test"
 
 organization := "com.github.t3hnar"
 
