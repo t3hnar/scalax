@@ -1,19 +1,30 @@
 package com.github.t3hnar.scalax.util
 
 import java.util.concurrent.TimeUnit
-import collection.mutable
+import java.util.concurrent.locks.ReentrantLock
+import scala.collection.concurrent.TrieMap
+
+import scala.concurrent.Future
+import scala.concurrent.duration._
 
 /**
- * @author Yaroslav Klymko
+ * @author Yaroslav Klymko, Sergiy Prydatchenko
  */
 class ExpiringCache[K, V](
     val duration: Long,
     val unit: TimeUnit,
     val queryOverflow: Int = 1000) {
 
+  import scala.concurrent.ExecutionContext.Implicits.global
+
+  def this(duration: FiniteDuration, queryOverflow: Int) =
+    this(duration.length, duration.unit, queryOverflow)
+
   case class ExpiringValue(value: V, timestamp: Long)
 
-  val map = new mutable.HashMap[K, ExpiringValue]
+  private[util] val map: TrieMap[K, ExpiringValue] = TrieMap.empty
+
+  private val lock = new ReentrantLock()
 
   def get(key: K): Option[V] = {
     increaseQueryCount()
@@ -28,14 +39,25 @@ class ExpiringCache[K, V](
 
   protected def currentMillis = System.currentTimeMillis()
 
-  private[util] var queryCount = 0
+  @volatile private[util] var queryCount = 0
 
   protected def increaseQueryCount() {
     queryCount = queryCount + 1
   }
 
   protected def maybeCleanExpired() {
-    if (queryCount >= queryOverflow) cleanExpired()
+    if (queryCount >= queryOverflow) {
+      try {
+        lock.lock()
+        if (queryCount >= queryOverflow) {
+          queryCount = 0
+          lock.unlock()
+          cleanExpired()
+        }
+      } finally {
+        if (lock.isHeldByCurrentThread) lock.unlock()
+      }
+    }
   }
 
   protected lazy val durationMillis = unit.toMillis(duration)
@@ -43,10 +65,12 @@ class ExpiringCache[K, V](
     (timestamp + durationMillis) <= currentMillis
 
   def cleanExpired() {
-    val expired = map.toList.collect {
-      case (key, ExpiringValue(_, timestamp)) if isExpired(timestamp) => key
+    Future {
+      val expired = map.toList.collect {
+        case (key, ExpiringValue(_, timestamp)) if isExpired(timestamp) => key
+      }
+      expired.foreach(map.remove)
     }
-    expired.foreach(map.remove)
   }
 }
 
