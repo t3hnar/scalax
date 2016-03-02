@@ -4,7 +4,7 @@ import java.util.concurrent.TimeUnit
 import java.util.concurrent.locks.ReentrantLock
 import scala.collection.concurrent.TrieMap
 
-import scala.concurrent.Future
+import scala.concurrent.{ExecutionContext, Future}
 import scala.concurrent.duration._
 
 /**
@@ -13,12 +13,13 @@ import scala.concurrent.duration._
 class ExpiringCache[K, V](
     val duration: Long,
     val unit: TimeUnit,
-    val queryOverflow: Int = 1000) {
+    val queryOverflow: Int = 1000,
+    executionContext: ExecutionContext = scala.concurrent.ExecutionContext.Implicits.global) {
 
-  import scala.concurrent.ExecutionContext.Implicits.global
+  implicit val ec = executionContext
 
-  def this(duration: FiniteDuration, queryOverflow: Int) =
-    this(duration.length, duration.unit, queryOverflow)
+  def this(duration: FiniteDuration, queryOverflow: Int, executionContext: ExecutionContext) =
+    this(duration.length, duration.unit, queryOverflow, executionContext)
 
   case class ExpiringValue(value: V, timestamp: Long)
 
