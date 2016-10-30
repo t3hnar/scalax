@@ -4,17 +4,18 @@ import java.util.concurrent.TimeUnit
 import java.util.concurrent.locks.ReentrantLock
 import scala.collection.concurrent.TrieMap
 
-import scala.concurrent.{ExecutionContext, Future}
+import scala.concurrent.{ ExecutionContext, Future }
 import scala.concurrent.duration._
 
 /**
  * @author Yaroslav Klymko, Sergiy Prydatchenko
  */
 class ExpiringCache[K, V](
-    val duration: Long,
-    val unit: TimeUnit,
-    val queryOverflow: Int = 1000,
-    executionContext: ExecutionContext = scala.concurrent.ExecutionContext.Implicits.global) {
+    val duration:      Long,
+    val unit:          TimeUnit,
+    val queryOverflow: Int              = 1000,
+    executionContext:  ExecutionContext = scala.concurrent.ExecutionContext.Implicits.global
+) {
 
   implicit val ec = executionContext
 
@@ -44,11 +45,11 @@ class ExpiringCache[K, V](
 
   @volatile private[util] var queryCount = 0
 
-  protected def increaseQueryCount() {
+  protected def increaseQueryCount(): Unit = {
     queryCount = queryCount + 1
   }
 
-  protected def maybeCleanExpired() {
+  protected def maybeCleanExpired(): Unit = {
     if (queryCount >= queryOverflow) {
       try {
         lock.lock()
@@ -67,35 +68,12 @@ class ExpiringCache[K, V](
   protected def isExpired(timestamp: Long) =
     (timestamp + durationMillis) <= currentMillis
 
-  def cleanExpired() {
+  def cleanExpired(): Unit = {
     Future {
       val expired = map.toList.collect {
         case (key, ExpiringValue(_, timestamp)) if isExpired(timestamp) => key
       }
       expired.foreach(map.remove)
     }
-  }
-}
-
-@deprecated("Use ExpiringCache - it is thread safe now", "2.9")
-class SynchronizedExpiringCache[K, V](duration: Long,
-  unit: TimeUnit,
-  queryOverflow: Int = 1000)
-    extends ExpiringCache[K, V](duration, unit, queryOverflow) {
-
-  override def get(key: K): Option[V] = synchronized {
-    super.get(key)
-  }
-
-  override def put(key: K, value: V) = synchronized {
-    super.put(key, value)
-  }
-
-  override def cleanExpired(): Unit = synchronized {
-    super.cleanExpired()
-  }
-
-  override def remove(entry: K): Option[V] = synchronized {
-    super.remove(entry)
   }
 }

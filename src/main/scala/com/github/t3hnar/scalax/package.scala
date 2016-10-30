@@ -54,13 +54,13 @@ package object scalax {
             else FiniteDuration(length, unit)
 
           unit match {
-            case DAYS => FiniteDuration(length, unit)
-            case HOURS => coarserOrThis(DAYS, 24)
-            case MINUTES => coarserOrThis(HOURS, 60)
-            case SECONDS => coarserOrThis(MINUTES, 60)
+            case DAYS         => FiniteDuration(length, unit)
+            case HOURS        => coarserOrThis(DAYS, 24)
+            case MINUTES      => coarserOrThis(HOURS, 60)
+            case SECONDS      => coarserOrThis(MINUTES, 60)
             case MILLISECONDS => coarserOrThis(SECONDS, 1000)
             case MICROSECONDS => coarserOrThis(MILLISECONDS, 1000)
-            case NANOSECONDS => coarserOrThis(MICROSECONDS, 1000)
+            case NANOSECONDS  => coarserOrThis(MICROSECONDS, 1000)
           }
         }
 
@@ -126,7 +126,7 @@ package object scalax {
   implicit class RichEither[A, B](val self: Either[A, B]) extends AnyVal {
     def toTry(implicit ev: A <:< Throwable): Try[B] = self match {
       case Right(x) => Success(x)
-      case Left(x) => Failure(ev(x))
+      case Left(x)  => Failure(ev(x))
     }
   }
 

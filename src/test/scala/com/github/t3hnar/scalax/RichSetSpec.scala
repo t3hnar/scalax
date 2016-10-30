@@ -14,31 +14,40 @@ class RichSetSpec extends Specification {
 
     "return None if sets are equal" in new CollateScope {
       collate(
-        Entity(1, "1"))(
-          Entity(1, "1")) must beNone
+        Entity(1, "1")
+      )(
+          Entity(1, "1")
+        ) must beNone
     }
 
     "return updated item" in new CollateScope {
       collate(
-        Entity(1, "1"))(
-          Entity(1, "2")) must beSome((Set(), Set(Entity(1, "2")), Set()))
+        Entity(1, "1")
+      )(
+          Entity(1, "2")
+        ) must beSome((Set(), Set(Entity(1, "2")), Set()))
     }
 
     "return deleted item" in new CollateScope {
       collate(
-        Entity(1, "1"))() must beSome((Set(), Set(), Set(1)))
+        Entity(1, "1")
+      )() must beSome((Set(), Set(), Set(1)))
     }
 
     "return added item" in new CollateScope {
       collate(
-        Entity(1, "1"))(
-          Entity(1, "1"), Entity(2, "2")) must beSome((Set(Entity(2, "2")), Set(), Set()))
+        Entity(1, "1")
+      )(
+          Entity(1, "1"), Entity(2, "2")
+        ) must beSome((Set(Entity(2, "2")), Set(), Set()))
     }
 
     "return added, updated and deleted" in new CollateScope {
       collate(
-        Entity(1, "1"), Entity(2, "2"), Entity(3, "3"))(
-          Entity(1, "1"), Entity(2, "u"), Entity(4, "4")) must beSome((Set(Entity(4, "4")), Set(Entity(2, "u")), Set(3)))
+        Entity(1, "1"), Entity(2, "2"), Entity(3, "3")
+      )(
+          Entity(1, "1"), Entity(2, "u"), Entity(4, "4")
+        ) must beSome((Set(Entity(4, "4")), Set(Entity(2, "u")), Set(3)))
     }
   }
 
