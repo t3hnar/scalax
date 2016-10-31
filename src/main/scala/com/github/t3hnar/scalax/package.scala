@@ -138,6 +138,6 @@ package object scalax {
   }
 
   implicit class RichOption[T](val self: Option[T]) extends AnyVal {
-    def orError(msg: String): T = self getOrElse sys.error(msg)
+    def orError(msg: => String): T = self getOrElse sys.error(msg)
   }
 }
