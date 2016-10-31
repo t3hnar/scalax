@@ -26,7 +26,7 @@ scalacOptions := Seq(
   "-Ywarn-numeric-widen",
   "-Xfuture")
 
-libraryDependencies += "org.specs2" %% "specs2-core" % "3.7" % Test
+libraryDependencies += "org.specs2" %% "specs2-core" % "3.8.5" % Test
 
 organization := "com.github.t3hnar"
 
