@@ -30,8 +30,6 @@ libraryDependencies += "org.specs2" %% "specs2-core" % "3.8.5" % Test
 
 organization := "com.github.t3hnar"
 
-sonatypeProfileName := "t3hnar"
-
 pomExtra := {
   <scm>
     <url>git@github.com:t3hnar/scalax.git</url>
