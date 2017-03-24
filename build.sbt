@@ -1,14 +1,13 @@
 import scalariform.formatter.preferences._
-import com.typesafe.sbt.SbtScalariform
 import com.typesafe.sbt.SbtScalariform.ScalariformKeys
 
 name := "scalax"
 
 organization := "com.github.t3hnar"
 
-scalaVersion := "2.11.8"
+scalaVersion := "2.12.1"
 
-crossScalaVersions := Seq("2.10.6", "2.11.8")
+crossScalaVersions := Seq("2.12.1", "2.11.8", "2.10.6")
 
 licenses := Seq(("Apache License, Version 2.0", url("http://www.apache.org/licenses/LICENSE-2.0")))
 
@@ -26,7 +25,7 @@ scalacOptions := Seq(
   "-Ywarn-numeric-widen",
   "-Xfuture")
 
-libraryDependencies += "org.specs2" %% "specs2-core" % "3.8.5" % Test
+libraryDependencies += "org.specs2" %% "specs2-core" % "3.8.6" % Test
 
 organization := "com.github.t3hnar"
 

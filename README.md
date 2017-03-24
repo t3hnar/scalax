@@ -1,4 +1,4 @@
-# ScalaX [![Build Status](https://travis-ci.org/t3hnar/scalax.svg)](https://travis-ci.org/t3hnar/scalax) [![Coverage Status](https://coveralls.io/repos/t3hnar/scalax/badge.svg)](https://coveralls.io/r/t3hnar/scalax) [![Version](https://img.shields.io/maven-central/v/com.github.t3hnar/scalax_2.11.svg?label=version)](http://search.maven.org/#search%7Cga%7C1%7Cg%3Acom.github.t3hnar%20AND%20scalax)
+# ScalaX [![Build Status](https://travis-ci.org/t3hnar/scalax.svg)](https://travis-ci.org/t3hnar/scalax) [![Coverage Status](https://coveralls.io/repos/t3hnar/scalax/badge.svg)](https://coveralls.io/r/t3hnar/scalax) [![Version](https://img.shields.io/maven-central/v/com.github.t3hnar/scalax_2.12.svg?label=version)](http://search.maven.org/#search%7Cga%7C1%7Cg%3Acom.github.t3hnar%20AND%20scalax)
 
 Extension for [Scala](http://www.scala-lang.org) library
 
