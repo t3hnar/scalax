@@ -50,3 +50,5 @@ ScalariformKeys.preferences := ScalariformKeys.preferences.value
   .setPreference(DoubleIndentClassDeclaration, true)
 
 coverageExcludedPackages := "com.github.t3hnar.scalax.examples.*"
+
+releasePublishArtifactsAction := PgpKeys.publishSigned.value
