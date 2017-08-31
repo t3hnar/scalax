@@ -9,6 +9,8 @@ scalaVersion := "2.12.1"
 
 crossScalaVersions := Seq("2.12.1", "2.11.8", "2.10.6")
 
+releaseCrossBuild := true
+
 licenses := Seq(("Apache License, Version 2.0", url("http://www.apache.org/licenses/LICENSE-2.0")))
 
 homepage := Some(new URL("https://github.com/t3hnar/scalax"))
