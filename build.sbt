@@ -53,3 +53,10 @@ ScalariformKeys.preferences := ScalariformKeys.preferences.value
 coverageExcludedPackages := "com.github.t3hnar.scalax.examples.*"
 
 releasePublishArtifactsAction := PgpKeys.publishSigned.value
+
+publishTo := Some(
+  if (isSnapshot.value)
+    Opts.resolver.sonatypeSnapshots
+  else
+    Opts.resolver.sonatypeStaging
+)
