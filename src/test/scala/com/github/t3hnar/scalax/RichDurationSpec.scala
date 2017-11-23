@@ -23,8 +23,7 @@ class RichDurationSpec extends Specification {
       (5.seconds, 5.seconds),
       (0.seconds, 0.seconds),
       (0.days, 0.days),
-      (1.days, 1.days)
-    )) {
+      (1.days, 1.days))) {
       case (x, expected) =>
         val actual = RichDuration(x).toCoarsest
         actual.unit mustEqual expected.unit

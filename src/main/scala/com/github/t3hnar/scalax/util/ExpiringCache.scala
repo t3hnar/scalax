@@ -11,11 +11,10 @@ import scala.concurrent.duration._
  * @author Yaroslav Klymko, Sergiy Prydatchenko
  */
 class ExpiringCache[K, V](
-    val duration:      Long,
-    val unit:          TimeUnit,
-    val queryOverflow: Int              = 1000,
-    executionContext:  ExecutionContext = scala.concurrent.ExecutionContext.Implicits.global
-) {
+  val duration:      Long,
+  val unit:          TimeUnit,
+  val queryOverflow: Int              = 1000,
+  executionContext:  ExecutionContext = scala.concurrent.ExecutionContext.Implicits.global) {
 
   implicit val ec = executionContext
 

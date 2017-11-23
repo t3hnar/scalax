@@ -5,9 +5,9 @@ name := "scalax"
 
 organization := "com.github.t3hnar"
 
-scalaVersion := "2.12.1"
+scalaVersion := "2.12.4"
 
-crossScalaVersions := Seq("2.12.1", "2.11.8", "2.10.6")
+crossScalaVersions := Seq("2.12.4", "2.11.11")
 
 releaseCrossBuild := true
 
@@ -27,7 +27,7 @@ scalacOptions := Seq(
   "-Ywarn-numeric-widen",
   "-Xfuture")
 
-libraryDependencies += "org.specs2" %% "specs2-core" % "3.8.6" % Test
+libraryDependencies += "org.specs2" %% "specs2-core" % "4.0.1" % Test
 
 organization := "com.github.t3hnar"
 
@@ -49,7 +49,6 @@ pomExtra := {
 ScalariformKeys.preferences := ScalariformKeys.preferences.value
   .setPreference(AlignParameters, true)
   .setPreference(AlignSingleLineCaseStatements, true)
-  .setPreference(DoubleIndentClassDeclaration, true)
 
 coverageExcludedPackages := "com.github.t3hnar.scalax.examples.*"
 

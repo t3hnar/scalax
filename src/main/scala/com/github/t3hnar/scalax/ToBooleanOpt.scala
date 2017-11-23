@@ -9,8 +9,7 @@ object ToBooleanOpt {
     "on" -> true,
     "off" -> false,
     "yes" -> true,
-    "no" -> false
-  )
+    "no" -> false)
 
   def apply(x: String): Option[Boolean] = map.get(x.toLowerCase)
 }

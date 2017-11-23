@@ -1,9 +1,14 @@
+dist: trusty
+sudo: false
+
 language: scala
+
 scala:
-  - 2.12.1
-  - 2.11.8
-  - 2.10.6
+  - 2.12.4
+  - 2.11.11
+
 jdk: oraclejdk8
-script:
-    - travis_retry sbt clean coverage test
-after_success: sbt coveralls
+
+script: sbt ++$TRAVIS_SCALA_VERSION clean coverage test
+
+after_success: sbt ++$TRAVIS_SCALA_VERSION coverageReport coveralls
