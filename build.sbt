@@ -7,7 +7,7 @@ organization := "com.github.t3hnar"
 
 scalaVersion := "2.12.4"
 
-crossScalaVersions := Seq("2.12.4", "2.11.11")
+crossScalaVersions := Seq("2.12.4", "2.11.12")
 
 releaseCrossBuild := true
 
@@ -27,7 +27,7 @@ scalacOptions := Seq(
   "-Ywarn-numeric-widen",
   "-Xfuture")
 
-libraryDependencies += "org.specs2" %% "specs2-core" % "4.0.1" % Test
+libraryDependencies += "org.specs2" %% "specs2-core" % "4.0.3" % Test
 
 organization := "com.github.t3hnar"
 
