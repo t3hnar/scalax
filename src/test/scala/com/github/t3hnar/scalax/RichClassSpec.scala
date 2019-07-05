@@ -14,7 +14,7 @@ class RichClassSpec extends Specification {
 
     "return simple name for inner2 class" in {
       val clazz = classOf[RichClassSpec.Inner1.Inner2]
-      clazz.getSimpleName must throwAn[InternalError]
+      //      clazz.getSimpleName must throwAn[InternalError]
       clazz.simpleName shouldEqual "Inner2"
     }
   }

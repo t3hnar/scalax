@@ -7,7 +7,9 @@ organization := "com.github.t3hnar"
 
 scalaVersion := crossScalaVersions.value.head
 
-crossScalaVersions := Seq("2.12.8", "2.11.12")
+//crossScalaVersions := Seq("2.12.8", "2.11.12")
+
+crossScalaVersions := Seq("2.13.0", "2.12.8")
 
 releaseCrossBuild := true
 
@@ -22,12 +24,10 @@ scalacOptions := Seq(
   "-deprecation",
   "-Xfatal-warnings",
   "-Xlint",
-  "-Yno-adapted-args",
   "-Ywarn-dead-code",
-  "-Ywarn-numeric-widen",
-  "-Xfuture")
+  "-Ywarn-numeric-widen")
 
-libraryDependencies += "org.specs2" %% "specs2-core" % "4.4.1" % Test
+libraryDependencies += "org.specs2" %% "specs2-core" % "4.6.0" % Test
 
 organization := "com.github.t3hnar"
 

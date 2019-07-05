@@ -15,7 +15,7 @@ class PrimitiveSpec extends Specification {
       unapply(' ') must beSome(' ')
       unapply(1: Short) must beSome(1: Short)
       unapply(1: Int) must beSome(1: Int)
-      unapply(1l) must beSome(1l)
+      unapply(1L) must beSome(1L)
       unapply(1f) must beSome(1f)
       unapply(1d) must beSome(1d)
       unapply(new TestAnyVal(1)) must beNone
