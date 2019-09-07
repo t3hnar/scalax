@@ -74,5 +74,6 @@ class ExpiringCache[K, V](
       }
       expired.foreach(map.remove)
     }
+    ()
   }
 }

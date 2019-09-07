@@ -7,27 +7,13 @@ organization := "com.github.t3hnar"
 
 scalaVersion := crossScalaVersions.value.head
 
-//crossScalaVersions := Seq("2.12.8", "2.11.12")
-
-crossScalaVersions := Seq("2.13.0", "2.12.8")
-
-releaseCrossBuild := true
+crossScalaVersions := Seq("2.13.0", "2.12.9")
 
 licenses := Seq(("Apache License, Version 2.0", url("http://www.apache.org/licenses/LICENSE-2.0")))
 
 homepage := Some(new URL("https://github.com/t3hnar/scalax"))
 
-scalacOptions := Seq(
-  "-encoding", "UTF-8",
-  "-feature",
-  "-unchecked",
-  "-deprecation",
-  "-Xfatal-warnings",
-  "-Xlint",
-  "-Ywarn-dead-code",
-  "-Ywarn-numeric-widen")
-
-libraryDependencies += "org.specs2" %% "specs2-core" % "4.6.0" % Test
+libraryDependencies += "org.specs2" %% "specs2-core" % "4.7.0" % Test
 
 organization := "com.github.t3hnar"
 
@@ -52,11 +38,4 @@ ScalariformKeys.preferences := ScalariformKeys.preferences.value
 
 coverageExcludedPackages := "com.github.t3hnar.scalax.examples.*"
 
-releasePublishArtifactsAction := PgpKeys.publishSigned.value
-
-publishTo := Some(
-  if (isSnapshot.value)
-    Opts.resolver.sonatypeSnapshots
-  else
-    Opts.resolver.sonatypeStaging
-)
+publishTo := sonatypePublishToBundle.value
