@@ -7,13 +7,13 @@ organization := "com.github.t3hnar"
 
 scalaVersion := crossScalaVersions.value.head
 
-crossScalaVersions := Seq("2.13.0", "2.12.9")
+crossScalaVersions := Seq("2.13.0", "2.12.10")
 
 licenses := Seq(("Apache License, Version 2.0", url("http://www.apache.org/licenses/LICENSE-2.0")))
 
 homepage := Some(new URL("https://github.com/t3hnar/scalax"))
 
-libraryDependencies += "org.specs2" %% "specs2-core" % "4.7.0" % Test
+libraryDependencies += "org.specs2" %% "specs2-core" % "4.8.0" % Test
 
 organization := "com.github.t3hnar"
 
