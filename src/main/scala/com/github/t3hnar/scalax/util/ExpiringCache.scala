@@ -2,10 +2,10 @@ package com.github.t3hnar.scalax.util
 
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.locks.ReentrantLock
-import scala.collection.concurrent.TrieMap
 
-import scala.concurrent.{ ExecutionContext, Future }
+import scala.collection.concurrent.TrieMap
 import scala.concurrent.duration._
+import scala.concurrent.{ ExecutionContext, Future }
 
 /**
  * @author Yaroslav Klymko, Sergiy Prydatchenko
@@ -28,15 +28,16 @@ class ExpiringCache[K, V](
   private val lock = new ReentrantLock()
 
   def get(key: K): Option[V] = {
-    increaseQueryCount()
-    maybeCleanExpired()
+    if (queryCount == queryOverflow) maybeCleanExpired() else increaseQueryCount()
     map.get(key).collect {
       case ExpiringValue(value, timestamp) if !isExpired(timestamp) => value
     }
   }
 
-  def put(entry: K, value: V): Option[V] =
-    map.put(entry, ExpiringValue(value, currentMillis)) map (_.value)
+  def put(entry: K, value: V): Option[V] = {
+    val res = map.put(entry, ExpiringValue(value, currentMillis))
+    res map (_.value)
+  }
 
   def remove(entry: K): Option[V] = map.remove(entry) map (_.value)
 
@@ -45,21 +46,21 @@ class ExpiringCache[K, V](
   @volatile private[util] var queryCount = 0
 
   protected def increaseQueryCount(): Unit = {
-    queryCount = queryCount + 1
+    try {
+      lock.lock()
+      queryCount = queryCount + 1
+    } finally {
+      if (lock.isHeldByCurrentThread) lock.unlock()
+    }
   }
 
   protected def maybeCleanExpired(): Unit = {
-    if (queryCount >= queryOverflow) {
-      try {
-        lock.lock()
-        if (queryCount >= queryOverflow) {
-          queryCount = 0
-          lock.unlock()
-          cleanExpired()
-        }
-      } finally {
-        if (lock.isHeldByCurrentThread) lock.unlock()
-      }
+    try {
+      lock.lock()
+      queryCount = 0
+      cleanExpired()
+    } finally {
+      if (lock.isHeldByCurrentThread) lock.unlock()
     }
   }
 

@@ -1,9 +1,11 @@
 package com.github.t3hnar.scalax
 
 import org.specs2.mutable.Specification
+
 import scala.util.{ Failure, Success }
 
 class RichEitherSpec extends Specification {
+  type Either[A, B] = RichEither[A, B]
   "Either.toTry" should {
     "return Failure on left with throwable" in {
       val e = new RuntimeException
