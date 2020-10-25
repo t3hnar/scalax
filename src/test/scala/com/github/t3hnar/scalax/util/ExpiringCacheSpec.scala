@@ -44,6 +44,14 @@ class ExpiringCacheSpec extends Specification {
       cache.map.size must eventually(beEqualTo(1))
     }
 
+    "be empty after value is removed" in new ExpiringCacheScope {
+      cache.map must haveSize(0)
+      cache.put(0, "0")
+      cache.map must haveSize(1)
+      cache.remove(0)
+      cache.get(0) must beNone
+    }
+
   }
 
   class ExpiringCacheScope extends Scope {

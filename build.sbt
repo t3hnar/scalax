@@ -7,7 +7,7 @@ organization := "com.github.t3hnar"
 
 scalaVersion := crossScalaVersions.value.head
 
-crossScalaVersions := Seq("2.13.0", "2.12.10")
+crossScalaVersions := Seq("2.13.2", "2.13.0", "2.12.10")
 
 licenses := Seq(("Apache License, Version 2.0", url("http://www.apache.org/licenses/LICENSE-2.0")))
 
@@ -31,6 +31,11 @@ pomExtra := {
     </developer>
   </developers>
 }
+
+scalacOptions --= Seq(
+  "-Xlint:nullary-override",
+)
+
 
 ScalariformKeys.preferences := ScalariformKeys.preferences.value
   .setPreference(AlignParameters, true)
