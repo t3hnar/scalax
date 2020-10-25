@@ -7,7 +7,7 @@ organization := "com.github.t3hnar"
 
 scalaVersion := crossScalaVersions.value.head
 
-crossScalaVersions := Seq("2.13.3", "2.13.0", "2.12.10")
+crossScalaVersions := Seq("2.13.2", "2.13.0", "2.12.10")
 
 licenses := Seq(("Apache License, Version 2.0", url("http://www.apache.org/licenses/LICENSE-2.0")))
 
@@ -28,11 +28,6 @@ pomExtra := {
       <id>t3hnar</id>
       <name>Yaroslav Klymko</name>
       <email>t3hnar@gmail.com</email>
-    </developer>
-    <developer>
-      <id>SamosadovArtem</id>
-      <name>Artsiom Samasadau</name>
-      <email>pizzaeueu@gmail.com</email>
     </developer>
   </developers>
 }
